@@ -123,9 +123,11 @@ public abstract class PostRequest {
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
-                while((line = reader.readLine()) != null){
+                while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
+
+                System.out.println(sb.toString());
 
                 jsonArray = new JSONArray(sb.toString());
 
