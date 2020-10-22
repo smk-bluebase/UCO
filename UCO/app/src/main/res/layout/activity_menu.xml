@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context="com.example.mypc.uco.MenuActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/application_background"
+        android:contentDescription="@string/shape_in_every_background"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_marginEnd="100dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/displayUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:background="@drawable/edit_text_style"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingLeft="40dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="40dp"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"
+                android:textColor="#619d6f" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/displayUserName"
+                android:background="@drawable/edit_text_style"
+                android:padding="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:id="@+id/optionsTable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowCount="4"
+                    android:background="@color/black"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="5dp"
+                    android:horizontalSpacing="5dp"
+                    android:columnWidth="90dp"
+                    android:gravity="center"
+                    android:stretchMode="columnWidth">
+
+                    <LinearLayout
+                        android:id="@+id/recentActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingBottom="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/recent_activity_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recent\nActivity"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/personalDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingBottom="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/personal_details_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Personal\nDetails"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/assets"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingBottom="10dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/assets_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Assets"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/loans"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/loan_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loans"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/demand"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/demand_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Demands"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fixedDeposit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="1"
+                        android:layout_column="2"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/fixed_deposit_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fixed\nDeposit"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/suretyDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/surety_details_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Surety\nDetails"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/interestCertificate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/interest_certificate_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Interest\nCertificate"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rateOfInterest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="2"
+                        android:layout_column="2"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginBottom="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/rate_of_interest_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rate\nof\nInterest"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/memberContactInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/contact_info_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Member\nContact\nInfo"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/changePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="3"
+                        android:layout_column="1"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="2dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/change_password_icon"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Change\nPassword"
+                            android:padding="10dp"
+                            android:textSize="13dp"
+                            android:textStyle="bold|italic"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/textGreen"
+                            android:background="@color/white" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_row="3"
+                        android:layout_column="2"
+                        android:orientation="vertical"
+                        android:layout_gravity="fill"
+                        android:background="@color/white"
+                        android:paddingTop="10dp">
+
+                    </LinearLayout>
+
+                </GridLayout>
+
+            </LinearLayout>
+
+       </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

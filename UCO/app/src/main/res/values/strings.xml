@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">UCO Society</string>
+    <string name="userNameTextView">User Name</string>
+    <string name="passwordTextView">Password</string>
+    <string name="shape_in_every_background">Shape in every background</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forgot Password</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="memberClosureAmount">Member Closure Amount</string>
+
+    <string-array name="financialYear">
+        <item>2019 - 2020</item>
+        <item>2020 - 2021</item>
+    </string-array>
+
+    <string-array name="thriftInterest">
+        <item>2017 - 2018</item>
+        <item>2018 - 2019</item>
+        <item>2019 - 2020</item>
+    </string-array>
+
+</resources>

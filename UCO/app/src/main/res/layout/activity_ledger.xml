@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ledger"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context="com.example.mypc.uco.LedgerActivity">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/application_background"
+            android:contentDescription="@string/shape_in_every_background"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:layout_marginEnd="100dp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/assetsLiabilitiesLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/edit_text_style"
+                    android:padding="13dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/assetsLiabilitiesTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:text="ASSETS &amp; LIABILITIES"
+                            android:orientation="vertical"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="25dp"
+                            android:paddingBottom="5dp"
+                            android:paddingRight="25dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@color/textGreen"
+                            android:textAlignment="center"/>
+
+                        <RelativeLayout
+                            android:id="@+id/memberDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/assetsLiabilitiesTitle"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/memberName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:text=""
+                                android:padding="2dp"
+                                android:paddingLeft="5dp"
+                                android:textStyle="bold|italic"
+                                android:textSize="10sp"
+                                android:textColor="@color/textGreen" />
+
+                            <TextView
+                                android:id="@+id/memberNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text=""
+                                android:padding="2dp"
+                                android:paddingLeft="5dp"
+                                android:textStyle="bold|italic"
+                                android:textSize="10sp"
+                                android:textColor="@color/textGreen" />
+
+                        </RelativeLayout>
+
+                        <TableLayout
+                            android:id="@+id/assetsTable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/memberDetails"
+                            android:padding="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#000000">
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:background="@color/c1"
+                                            android:layout_weight="0.2"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="center"
+                                            android:text="Fields"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/white" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:background="@color/c1"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="Assets"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/white"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/shareCapital"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/white"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="Share Capital"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/shareCapital1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/thrift"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/lightGray"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="Thrift"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/thrift1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/lightGray"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/srf"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/white"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="SRF"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/srf1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/assetsTotal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/lightGray"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="TOTAL"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/assetsTotal1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/lightGray"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                        </TableLayout>
+
+                        <TableLayout
+                            android:id="@+id/liabilitiesTable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/assetsTable"
+                            android:padding="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#000000">
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:background="@color/c1"
+                                            android:layout_weight="0.2"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="center"
+                                            android:text="Fields"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/white" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:background="@color/c1"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="Liabilities"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/white"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/suretyLoan"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/white"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="Surety Loan"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/suretyLoan1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/festivalLoan"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/lightGray"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="Festival Loan"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/festivalLoan1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/lightGray"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/floodLoan"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/white"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="Flood Loan"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/floodLoan1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/white"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:padding="1dp">
+
+                                        <TextView
+                                            android:id="@+id/liabilitiesTotal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="0.2"
+                                            android:background="@color/lightGray"
+                                            android:layout_marginRight="2dp"
+                                            android:gravity="left"
+                                            android:text="TOTAL"
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/c1" />
+
+                                        <TextView
+                                            android:id="@+id/liabilitiesTotal1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_weight="1"
+                                            android:background="@color/lightGray"
+                                            android:gravity="left"
+                                            android:text=""
+                                            android:orientation="vertical"
+                                            android:padding="5dp"
+                                            android:textStyle="bold|italic"
+                                            android:textSize="10dp"
+                                            android:textColor="@color/black"/>
+
+                                </TableRow>
+
+                        </TableLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/netLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/liabilitiesTable"
+                            android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/net"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="NET :"
+                                    android:layout_alignParentLeft="true"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp"
+                                    android:textStyle="bold|italic"
+                                    android:textSize="15dp"
+                                    android:textColor="@color/c1" />
+
+                                <TextView
+                                    android:id="@+id/netAmount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="0.00"
+                                    android:layout_toRightOf="@id/net"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold|italic"
+                                    android:textColor="@color/black" />
+
+                        </RelativeLayout>
+
+                        <Button
+                            android:id="@+id/btnMemberClosureAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/netLayout"
+                            android:layout_marginHorizontal="45dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_style"
+                            android:fontFamily="serif-monospace"
+                            android:paddingLeft="30dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="30dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/memberClosureAmount"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            tools:targetApi="o"
+                            android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

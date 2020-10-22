@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grey">#D6D8F7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="textGreen">#619d6f</color>
+    <color name="black">#000000</color>
+    <color name="lightGray">#F8F8F8</color>
+
+    <color name="c1">#4f3565</color>
+    <color name="c2">#CC0E74</color>
+    <color name="c3">#9f6c97</color>
+
+    <color name="uco_background">#FFFFFF</color>
+</resources>

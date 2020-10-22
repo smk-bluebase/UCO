@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context="com.example.mypc.uco.MainActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/application_background"
+        android:contentDescription="@string/shape_in_every_background"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_marginEnd="100dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/edit_text_style"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <RelativeLayout
+            android:id="@+id/loginSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/chevronLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/uco" />
+
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOGIN"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/textGreen"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:textColor="@color/black"
+            android:hint="UserName"
+            android:layout_below="@id/loginSection"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginTop="20dp"
+            android:hint="Password"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/lbl_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:layout_marginTop="5dp"
+            android:padding="2dp"
+            android:text="@string/forget_password"
+            android:textColor="#619d6f"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_forget_password"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_style"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            android:text="LOGIN"
+            android:paddingLeft="50dp"
+            android:paddingTop="10dp"
+            android:paddingRight="50dp"
+            android:paddingBottom="10dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="112dp"
+        android:layout_height="51dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/logo_website"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+

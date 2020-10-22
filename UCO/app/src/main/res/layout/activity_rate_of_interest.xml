@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rate_of_interest"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context="com.example.mypc.uco.RateOfInterestActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/application_background"
+        android:contentDescription="@string/shape_in_every_background"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_marginEnd="100dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rateOfInterestLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/edit_text_style"
+            android:padding="13dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/rateOfInterestTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="Rate Of Interest"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="25dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/textGreen"
+                android:textAlignment="center"/>
+
+            <RelativeLayout
+                android:id="@+id/memberDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rateOfInterestTitle"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/memberName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Member Name : "
+                    android:padding="2dp"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold|italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/textGreen" />
+
+                <TextView
+                    android:id="@+id/memberNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Member No : "
+                    android:padding="2dp"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold|italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/textGreen" />
+
+            </RelativeLayout>
+
+            <TableLayout
+                android:id="@+id/rateOfInterestTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/memberDetails"
+                android:padding="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/c1"
+                        android:layout_weight="0.2"
+                        android:layout_marginRight="2dp"
+                        android:gravity="center"
+                        android:text="Fields"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/c1"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Amount"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:padding="1dp">
+
+                    <TextView
+                        android:id="@+id/thriftCapital"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.2"
+                        android:background="@color/lightGray"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text="Thrift Capital"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/c1" />
+
+                    <TextView
+                        android:id="@+id/thriftCapital1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:background="@color/lightGray"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:padding="1dp">
+
+                    <TextView
+                        android:id="@+id/fixedDeposit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.2"
+                        android:background="@color/white"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text="Fixed Deposit"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/c1" />
+
+                    <TextView
+                        android:id="@+id/fixedDeposit1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/loanInterestTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="Loan Interest"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingLeft="25dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="25dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/textGreen"
+                android:layout_below="@id/rateOfInterestTable"
+                android:textAlignment="center"/>
+
+            <TableLayout
+                android:id="@+id/loanInterestTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loanInterestTitle"
+                android:padding="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/c1"
+                        android:layout_weight="0.3"
+                        android:layout_marginRight="2dp"
+                        android:gravity="center"
+                        android:text="Fields"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/c1"
+                        android:layout_weight="0.3"
+                        android:layout_marginRight="2dp"
+                        android:gravity="center"
+                        android:text="Interest"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/c1"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="OD Interest"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:padding="1dp">
+
+                    <TextView
+                        android:id="@+id/suretyLoan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/white"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text="Surety Loan"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/c1" />
+
+                    <TextView
+                        android:id="@+id/suretyLoan1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/white"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/suretyLoan2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/white"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:padding="1dp">
+
+                    <TextView
+                        android:id="@+id/festivalLoan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/lightGray"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text="Festival Loan"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/c1" />
+
+                    <TextView
+                        android:id="@+id/festivalLoan1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/lightGray"
+                        android:layout_marginRight="2dp"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/festivalLoan2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="0.3"
+                        android:background="@color/lightGray"
+                        android:gravity="left"
+                        android:text=""
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:textSize="10dp"
+                        android:textColor="@color/black"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <RelativeLayout
+                android:id="@+id/fdLoanDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/loanInterestTable"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fdLoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="FD Loan"
+                    android:padding="2dp"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold|italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/textGreen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/fdLoan"
+                    android:text="+1.00 ON DEP RATE OF FD"
+                    android:padding="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold|italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/textGreen" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
