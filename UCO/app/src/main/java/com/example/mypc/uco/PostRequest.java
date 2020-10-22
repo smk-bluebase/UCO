@@ -127,8 +127,6 @@ public abstract class PostRequest {
                     sb.append(line + "\n");
                 }
 
-                System.out.println(sb.toString());
-
                 jsonArray = new JSONArray(sb.toString());
 
                 reader.close();
