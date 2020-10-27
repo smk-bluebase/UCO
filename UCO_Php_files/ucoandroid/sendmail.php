@@ -12,11 +12,11 @@ function sendMail($email, $subject, $message){
     $mail->SMTPSecure = "ssl";
     $mail->Pool = true;
     $mail->Mailer   = 'smtp';
-    $mail->Username = 'uco@ucosocietychennai.in';
-    $mail->Password = 'Welcome@123';
+    $mail->Username = '';
+    $mail->Password = '';
 
-    $mail->setFrom('uco@ucosocietychennai.in', 'UCOSAS');
-    $mail->addReplyTo('uco@ucosocietychennai.in', 'UCOSAS');
+    $mail->setFrom('', 'UCOSAS');
+    $mail->addReplyTo('', 'UCOSAS');
     $mail->addAddress($email);
 
     $mail->isHTML(true);	
