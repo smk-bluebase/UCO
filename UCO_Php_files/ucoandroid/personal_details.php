@@ -7,7 +7,7 @@ $con = $db->connect();
 
 $member_no = $_POST['memberNo'];
 
-$result=array();
+$result = array();
 
 $sql_query = "SELECT m.name,m.dob,m.ret_date,m.branch_code,b.name as branch_name,m.mobile_no,m.email,m.account_no,m.pancard_no,m.nominee_name,m.address,m.nominee_relationship 
 FROM `member` m join branch b on m.branch_code=b.code where m.member_no = ".$member_no;

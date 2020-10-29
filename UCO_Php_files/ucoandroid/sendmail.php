@@ -9,7 +9,7 @@ function sendMail($email, $subject, $message){
     $mail->Host = 'smtp.zoho.com';
     $mail->Port = 465;
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = "ssl";
+    $mail->SMTPSecure = 'ssl';
     $mail->Pool = true;
     $mail->Mailer   = 'smtp';
     $mail->Username = '';
