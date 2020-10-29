@@ -41,5 +41,5 @@ if($row){
 
 echo json_encode($result);    
 
-mysqli_connect($con);
+mysqli_close($con);
 ?>
