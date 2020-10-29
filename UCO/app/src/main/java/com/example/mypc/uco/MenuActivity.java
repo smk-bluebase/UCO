@@ -68,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
             progressDialog.show();
 
             jsonObject = new JsonObject();
-            jsonObject.addProperty("member_id", memberNo);
+            jsonObject.addProperty("memberNo", memberNo);
 
             PostNotification postNotification = new PostNotification(this);
             postNotification.checkServerAvailability(2);

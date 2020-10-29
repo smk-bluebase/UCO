@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     String urlLogin = CommonUtils.IP + "/UCO/ucoandroid/login.php";
     String urlForgotPasswordGenerator = CommonUtils.IP + "/UCO/ucoandroid/forgotpasswordgenerator.php";
 
+    EditText userNameEditText1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setTitle("New Password Request");
                 dialog.setContentView(R.layout.forget_password);
 
-                EditText userNameEditText = dialog.findViewById(R.id.username);
+                userNameEditText1 = dialog.findViewById(R.id.username);
                 EditText emailEditText = dialog.findViewById(R.id.email);
                 Button submit = dialog.findViewById(R.id.submit);
 
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         progressDialog.show();
 
-                        String employeeNo = userNameEditText.getText().toString();
+                        String employeeNo = userNameEditText1.getText().toString();
                         String email = emailEditText.getText().toString();
 
                         if(!employeeNo.isEmpty() && !email.isEmpty()){
@@ -187,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Check email for OTP", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
-                            intent.putExtra("userName", userNameEditText.getText().toString());
+                            intent.putExtra("userName", userNameEditText1.getText().toString());
                             startActivity(intent);
                             finish();
                         }else{
