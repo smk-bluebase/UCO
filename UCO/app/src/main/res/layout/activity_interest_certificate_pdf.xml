@@ -26,14 +26,11 @@
             android:id="@+id/personalDetailsLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@drawable/edit_text_style"
             android:padding="20dp"
             android:layout_marginTop="30dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginBottom="30dp"
-            android:layout_centerHorizontal="true">
+            android:layout_marginHorizontal="30dp">
 
             <TextView
                 android:id="@+id/interestCertificate"
@@ -44,7 +41,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="Interest Certificate"
+                android:text="INTEREST CERTIFICATE"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
                 android:paddingLeft="25dp"
@@ -55,41 +52,59 @@
                 android:textColor="@color/textGreen"
                 android:textAlignment="center"/>
 
-            <Spinner
-                android:id="@+id/year"
+            <RelativeLayout
+                android:id="@+id/chooseYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/interestCertificate"
-                android:layout_marginTop="20dp" />
-
-            <Button
-                android:id="@+id/ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
-                android:layout_below="@id/interestCertificate"
-                android:layout_toRightOf="@+id/year"
-                android:background="@drawable/button_style"
-                android:layout_marginLeft="50dp"
-                android:fontFamily="serif-monospace"
-                android:text="OK"
-                android:textColor="@color/white"
-                tools:targetApi="o" />
+                android:layout_centerHorizontal="true">
 
-        <RelativeLayout
-            android:id="@+id/pdfRelativeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/pdf_viewer_background"
-            android:padding="1dp"
-            android:layout_below="@id/ok"
-            android:layout_centerHorizontal="true">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/yearTextInputLayout"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Year"
+                    android:theme="@style/MaterialTheme"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.github.barteksc.pdfviewer.PDFView
-                android:id="@+id/pdfView"
-                android:layout_width="300dp"
-                android:layout_height="400dp" />
+                    <AutoCompleteTextView
+                        android:id="@+id/year"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/ok"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/yearTextInputLayout"
+                    android:background="@drawable/button_style"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="serif-monospace"
+                    android:text="OK"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    tools:targetApi="o" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pdfRelativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pdf_viewer_background"
+                android:padding="1dp"
+                android:layout_below="@id/chooseYear"
+                android:layout_centerHorizontal="true">
+
+                <com.github.barteksc.pdfviewer.PDFView
+                    android:id="@+id/pdfView"
+                    android:layout_width="300dp"
+                    android:layout_height="400dp"/>
 
             </RelativeLayout>
 

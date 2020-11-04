@@ -44,55 +44,22 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="Rate Of Interest"
+                android:text="RATE OF INTEREST"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
                 android:paddingLeft="25dp"
                 android:paddingBottom="5dp"
                 android:paddingRight="25dp"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textColor="@color/textGreen"
                 android:textAlignment="center"/>
-
-            <RelativeLayout
-                android:id="@+id/memberDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rateOfInterestTitle"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/memberName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="Member Name : "
-                    android:padding="2dp"
-                    android:paddingLeft="5dp"
-                    android:textStyle="bold|italic"
-                    android:textSize="10sp"
-                    android:textColor="@color/textGreen" />
-
-                <TextView
-                    android:id="@+id/memberNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="Member No : "
-                    android:padding="2dp"
-                    android:paddingLeft="5dp"
-                    android:textStyle="bold|italic"
-                    android:textSize="10sp"
-                    android:textColor="@color/textGreen" />
-
-            </RelativeLayout>
 
             <TableLayout
                 android:id="@+id/rateOfInterestTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/memberDetails"
+                android:layout_below="@+id/rateOfInterestTitle"
                 android:padding="1dp"
                 android:layout_marginTop="10dp"
                 android:background="#000000">
@@ -109,7 +76,7 @@
                         android:layout_weight="0.2"
                         android:layout_marginRight="2dp"
                         android:gravity="center"
-                        android:text="Fields"
+                        android:text="Details"
                         android:orientation="vertical"
                         android:padding="5dp"
                         android:textStyle="bold|italic"
@@ -123,7 +90,7 @@
                         android:background="@color/c1"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Amount"
+                        android:text="Rate"
                         android:orientation="vertical"
                         android:padding="5dp"
                         android:textStyle="bold|italic"
@@ -252,7 +219,7 @@
                         android:layout_weight="0.3"
                         android:layout_marginRight="2dp"
                         android:gravity="center"
-                        android:text="Fields"
+                        android:text="Details"
                         android:orientation="vertical"
                         android:padding="5dp"
                         android:textStyle="bold|italic"
@@ -267,7 +234,7 @@
                         android:layout_weight="0.3"
                         android:layout_marginRight="2dp"
                         android:gravity="center"
-                        android:text="Interest"
+                        android:text="Loan Interest"
                         android:orientation="vertical"
                         android:padding="5dp"
                         android:textStyle="bold|italic"
@@ -424,9 +391,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/fdLoan"
-                    android:text="+1.00 ON DEP RATE OF FD"
+                    android:text="+1.00 OVER DEPOSIT RATE OF FD"
                     android:padding="2dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:textStyle="bold|italic"
                     android:textSize="10sp"
                     android:textColor="@color/textGreen" />

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -80,7 +79,6 @@ public abstract class PostRequest {
                     urlc.setConnectTimeout(time * 1000);
                     urlc.connect();
                     if (urlc.getResponseCode() == 200) {
-                        Log.wtf("Connection", "Success !");
                         return true;
                     } else {
                         return false;
@@ -149,7 +147,5 @@ public abstract class PostRequest {
 
     public abstract void onFinish(JSONArray jsonArray);
 
-    protected void finalize(){
-
-    }
+    protected void finalize(){}
 }

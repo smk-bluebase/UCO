@@ -15,8 +15,8 @@ function sendMail($email, $subject, $message){
     $mail->Username = '';
     $mail->Password = '';
 
-    $mail->setFrom('', 'UCOSAS');
-    $mail->addReplyTo('', 'UCOSAS');
+    $mail->setFrom('', '');
+    $mail->addReplyTo('', '');
     $mail->addAddress($email);
 
     $mail->isHTML(true);	

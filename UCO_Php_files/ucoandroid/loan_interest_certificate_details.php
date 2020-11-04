@@ -1,15 +1,15 @@
 <?php
 include("config.php");
-include("db_connect.php");
 
 $db = new DB_Connect();
 $con = $db->connect();
 
 $memberNo = $_POST['memberNo'];
-$year = $_POST['year'];
+$fromYear = $_POST['fromYear'];
+$toYear = $_POST['toYear'];
 
-$fromDate = "";
-$toDate = "";
+$fromDate = $fromYear . "-04-01";
+$toDate = $toYear . "-03-31";
 
 $suretyBalance = 0;
 $interestRate = 0;
@@ -18,15 +18,9 @@ $interestRecovered = 0;
 $interestToBeRecovered = 0;
 $total = 0;
 
-if($year == 2020){
-    $fromDate = "2019-04-01";
-    $toDate = "2020-03-31";
-}else if($year == 2021){
-    $fromDate = "2020-04-01";
-    $toDate = "2021-03-31";
-}
-
-$sql_query = "SELECT SUM(`interest`) AS surety_interest_sum, SUM(`od_interest`) AS surety_od_interest_sum FROM surety_loan WHERE member_no = '".$memberNo."' AND `date` between '".$fromDate."' AND '".$toDate."'";
+$sql_query = "SELECT SUM(`interest`) AS surety_interest_sum, SUM(`od_interest`) AS surety_od_interest_sum
+                FROM surety_loan 
+                WHERE member_no = '".$memberNo."' AND `date` BETWEEN '".$fromDate."' AND '".$toDate."'";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -36,7 +30,9 @@ while($row = mysqli_fetch_array($res)){
     $interestRecovered = $row['surety_interest_sum'];
 }
 
-$sql_query = "SELECT interest_rate FROM loan_type WHERE code='LON-001'";
+$sql_query = "SELECT interest_rate
+                FROM loan_type
+                WHERE code='LON-001'";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -44,7 +40,9 @@ while($row = mysqli_fetch_array($res)){
     $interestRate = $row['interest_rate'];
 }
 
-$sql_query = "SELECT surety_balance FROM member_balance WHERE member_no = '".$memberNo."'";
+$sql_query = "SELECT surety_balance
+                FROM member_balance 
+                WHERE member_no = '".$memberNo."'";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -54,7 +52,6 @@ while($row = mysqli_fetch_array($res)){
 
 
 // Calculating remaining date
-
 $ts1 = strtotime($fromDate);
 $ts2 = strtotime($toDate);
 
@@ -74,7 +71,6 @@ $remaining_month=12 - $diff;
 
 
 // Calculating interest and total
-
 $interestToBeRecovered = ((($suretyBalance * $interestRate)/100)/12);
 $interestToBeRecovered = round($interestToBeRecovered) * $remaining_month;
 $total = $interestRecovered + $interestToBeRecovered;

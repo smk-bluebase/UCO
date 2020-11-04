@@ -1,6 +1,5 @@
 package com.example.mypc.uco;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,8 +13,6 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InterestCertificateActivity extends AppCompatActivity {
-    Context context = this;
-
     String memberName;
     String memberNo;
 

@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class ThriftInterestCertificate {
-    public void createPDF(JSONArray jsonArray, PDFView pdfView, File file, String dest, ImageData imageData, String nameStr, String memberNoStr, String fromYearStr, String toYearStr) throws IOException {
+    public void createPDF(JSONArray jsonArray, PDFView pdfView, File file, String dest, ImageData imageData, String nameStr, String memberNoStr, String branch_name, String zone, String fromYearStr, String toYearStr) throws IOException {
         PdfWriter writer = null;
         try {
             writer = new PdfWriter(dest);
@@ -95,7 +95,24 @@ class ThriftInterestCertificate {
 
         Text toYear = new Text(toYearStr).setFont(bold);
 
-        String mainParagraphStr = "The following is the thrift interest for Member No. ";
+        String mainParagraphStr = "The following is the thrift interest for Shri/Smt. ";
+
+        String para2Str = " Member No. ";
+        Text para2 = new Text(para2Str);
+
+        String para3Str;
+        if(zone.isEmpty()) para3Str = ", UCO BANK, " + branch_name;
+        else para3Str = ", UCO BANK, " + branch_name + " " + zone;
+        Text para3 = new Text(para3Str);
+
+        String para4Str = ", for the financial year April ";
+        Text para4 = new Text(para4Str);
+
+        String para5Str = " to March ";
+        Text para5 = new Text(para5Str);
+
+        String para6Str = ".";
+        Text para6 = new Text(para6Str);
 
         Paragraph mainParagraph = new Paragraph(mainParagraphStr);
         mainParagraph.setFontSize(12f);
@@ -103,26 +120,15 @@ class ThriftInterestCertificate {
         mainParagraph.setTextAlignment(TextAlignment.JUSTIFIED);
         mainParagraph.setFixedPosition(60, 520, 500);
 
-        String para2Str = ", ";
-        Text para2 = new Text(para2Str);
-
-        String para3Str = " for the financial year April ";
-        Text para3 = new Text(para3Str);
-
-        String para4Str = " to March ";
-        Text para4 = new Text(para4Str);
-
-        String para5Str = ".";
-        Text para5 = new Text(para5Str);
-
-        mainParagraph.add(memberNo)
+        mainParagraph.add(name)
                 .add(para2)
-                .add(name)
+                .add(memberNo)
                 .add(para3)
-                .add(fromYear)
                 .add(para4)
+                .add(fromYear)
+                .add(para5)
                 .add(toYear)
-                .add(para5);
+                .add(para6);
 
         // Creating a table
         float [] pointColumnWidths = {150F, 150F, 150F, 150F, 150F};

@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -81,7 +76,7 @@ public class FixedDepositActivity extends AppCompatActivity {
             jsonObject = new JsonObject();
             jsonObject.addProperty("memberNo", memberNo);
 
-            PostFixedDeposit postFixedDeposit = new PostFixedDeposit(this);
+            PostFixedDeposit postFixedDeposit = new PostFixedDeposit(context);
             postFixedDeposit.checkServerAvailability(2);
         }
     }
@@ -113,16 +108,16 @@ public class FixedDepositActivity extends AppCompatActivity {
                         i++;
                     }
 
-                    tableLayout.addView(createTableRow(Color.WHITE, getResources().getColor(R.color.c1), tableHeader));
+                    tableLayout.addView(CommonUtils.createTableRow(context, Color.WHITE, getResources().getColor(R.color.c1), tableHeader, true, Gravity.CENTER));
                 }
 
                 for(int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 
                     if(i%2 != 0) {
-                        tableLayout.addView(createTableRow(Color.BLACK, getResources().getColor(R.color.lightGray), jsonObject));
+                        tableLayout.addView(CommonUtils.createTableRow(context, Color.BLACK, getResources().getColor(R.color.lightGray), jsonObject, false, Gravity.LEFT));
                     }else {
-                        tableLayout.addView(createTableRow(Color.BLACK, Color.WHITE, jsonObject));
+                        tableLayout.addView(CommonUtils.createTableRow(context, Color.BLACK, Color.WHITE, jsonObject, false, Gravity.LEFT));
                     }
                 }
             }catch(JSONException e) {
@@ -131,57 +126,6 @@ public class FixedDepositActivity extends AppCompatActivity {
 
             progressDialog.dismiss();
         }
-    }
-
-    public TableRow createTableRow(int textColor, int backgroundColor, JSONObject jsonObject){
-        TableRow tableRow = new TableRow(context);
-        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
-        tableRow.setPadding(1, 1, 1, 1);
-
-        try {
-            Iterator<String> keys = jsonObject.keys();
-
-            while(keys.hasNext()) {
-                String key = keys.next();
-
-                if(key.equals("date")){
-                    try {
-                        Date oldDate = new SimpleDateFormat("yyyy-mm-dd").parse(jsonObject.get(key).toString());
-                        String newDate = new SimpleDateFormat("dd-mm-yyyy").format(oldDate);
-                        tableRow.addView(createTextView(textColor, backgroundColor, newDate, true));
-                    }catch(ParseException e){
-                        e.printStackTrace();
-                    }
-                }else {
-                    if(keys.hasNext()) {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), true));
-                    }else {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), false));
-                    }
-                }
-            }
-
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
-
-        return tableRow;
-    }
-
-    public TextView createTextView(int textColor, int backgroundColor, String text, boolean isMarginRight){
-        TextView textView = new TextView(context);
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.2f);
-        if(isMarginRight) params.setMargins(0, 0, 5, 5);
-        else params.setMargins(0, 0, 0, 5);
-        textView.setLayoutParams(params);
-        textView.setBackgroundColor(backgroundColor);
-        textView.setGravity(Gravity.CENTER);
-        textView.setPadding(5, 5, 5, 5);
-        textView.setText(text);
-        textView.setTypeface(textView.getTypeface(), Typeface.BOLD_ITALIC);
-        textView.setTextSize(10);
-        textView.setTextColor(textColor);
-        return textView;
     }
 
     @Override

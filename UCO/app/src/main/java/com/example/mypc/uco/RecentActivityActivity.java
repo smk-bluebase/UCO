@@ -29,7 +29,6 @@ public class RecentActivityActivity extends AppCompatActivity {
     ListView listRecentActivity;
     RecentActivityAdapter recentAdapter;
     ArrayList<RecentActivityObj> objects = new ArrayList<RecentActivityObj>();
-    Context context = this;
 
     JsonObject jsonObject;
     ProgressDialog progressDialog;
@@ -81,6 +80,7 @@ public class RecentActivityActivity extends AppCompatActivity {
                 super.postRequest(urlRecentActivity, jsonObject);
             }else {
                 Toast.makeText(getApplicationContext(), "Connection to Network \nnot Available", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         }
 

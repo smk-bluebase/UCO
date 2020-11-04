@@ -44,14 +44,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="Fixed Deposit"
+                android:text="FIXED DEPOSIT"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
                 android:paddingLeft="25dp"
                 android:paddingBottom="5dp"
                 android:paddingRight="25dp"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="20dp"
                 android:textColor="@color/textGreen"
                 android:textAlignment="center"/>
 
