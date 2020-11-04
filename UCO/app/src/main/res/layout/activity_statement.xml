@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_surety_details"
+    android:id="@+id/activity_personal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGray"
-    tools:context="com.example.mypc.uco.SuretyDetailsActivity">
+    tools:context="com.example.mypc.uco.StatementActivity">
 
     <ImageView
         android:id="@+id/background"
@@ -23,7 +23,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/suretyDetailsLayout"
+            android:id="@+id/statementLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -36,7 +36,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
-                android:id="@+id/suretyDetailsTitle"
+                android:id="@+id/statementTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -44,14 +44,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="SURETY DETAILS"
+                android:text="STATEMENT"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
                 android:paddingLeft="25dp"
                 android:paddingBottom="5dp"
                 android:paddingRight="25dp"
                 android:textStyle="bold"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/textGreen"
                 android:textAlignment="center"/>
 
@@ -59,7 +59,7 @@
                 android:id="@+id/memberDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/suretyDetailsTitle"
+                android:layout_below="@id/statementTitle"
                 android:orientation="horizontal">
 
                 <TextView
@@ -72,7 +72,7 @@
                     android:paddingLeft="5dp"
                     android:textStyle="bold|italic"
                     android:textSize="10sp"
-                    android:textColor="@color/textGreen" />
+                    android:textColor="@color/textGreen"/>
 
                 <TextView
                     android:id="@+id/memberNo"
@@ -88,11 +88,36 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/srfTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/memberDetails"
+                android:layout_marginRight="2dp"
+                android:text="SRF"
+                android:padding="5dp"
+                android:textStyle="bold|italic"
+                android:textSize="15dp"
+                android:textColor="@color/c1" />
+
+            <TextView
+                android:id="@+id/note"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Last 5 transactions only"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/memberDetails"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="5dp"
+                android:textStyle="bold|italic"
+                android:textSize="12dp"
+                android:textColor="@color/textGreen" />
+
             <TableLayout
-                android:id="@+id/suretyMembersTable"
+                android:id="@+id/srfTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/memberDetails"
+                android:layout_below="@+id/srfTitle"
                 android:paddingTop="1dp"
                 android:paddingRight="1dp"
                 android:paddingBottom="-1dp"
@@ -103,29 +128,82 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/availableSuretyMembers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="Available Surety Members : "
-                android:padding="2dp"
-                android:paddingLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:id="@+id/thriftTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/srfTable"
+                android:layout_marginRight="2dp"
+                android:text="THRIFT"
+                android:padding="5dp"
                 android:textStyle="bold|italic"
-                android:textSize="15sp"
-                android:textColor="@color/textGreen"
-                android:layout_below="@id/suretyMembersTable"/>
+                android:textSize="15dp"
+                android:textColor="@color/c1" />
 
             <TableLayout
-                android:id="@+id/availableSuretyMembersTable"
+                android:id="@+id/thriftTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/availableSuretyMembers"
+                android:layout_below="@+id/thriftTitle"
                 android:paddingTop="1dp"
                 android:paddingRight="1dp"
                 android:paddingBottom="-1dp"
                 android:paddingLeft="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000">
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/suretyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/thriftTable"
+                android:layout_marginRight="2dp"
+                android:text="SURETY"
+                android:padding="5dp"
+                android:textStyle="bold|italic"
+                android:textSize="15dp"
+                android:textColor="@color/c1" />
+
+            <TableLayout
+                android:id="@+id/suretyTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/suretyTitle"
+                android:paddingTop="1dp"
+                android:paddingRight="1dp"
+                android:paddingBottom="-1dp"
+                android:paddingLeft="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000">
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/festivalTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/suretyTable"
+                android:layout_marginRight="2dp"
+                android:text="FESTIVAL"
+                android:padding="5dp"
+                android:textStyle="bold|italic"
+                android:textSize="15dp"
+                android:textColor="@color/c1" />
+
+            <TableLayout
+                android:id="@+id/festivalTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/festivalTitle"
+                android:paddingTop="1dp"
+                android:paddingRight="1dp"
+                android:paddingBottom="-1dp"
+                android:paddingLeft="1dp"
+                android:layout_marginTop="10dp"
                 android:background="#000000">
 
             </TableLayout>

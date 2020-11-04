@@ -21,8 +21,6 @@ import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RateOfInterestActivity extends AppCompatActivity {
-    TextView memberNameTextView;
-    TextView memberNoTextView;
     TextView thriftCapital;
     TextView fixedDeposit;
     TextView suretyLoan1;
@@ -56,12 +54,6 @@ public class RateOfInterestActivity extends AppCompatActivity {
         Intent intent = getIntent();
         memberNo = intent.getStringExtra("memberNo");
         memberName = intent.getStringExtra("memberName");
-
-        memberNameTextView = findViewById(R.id.memberName);
-        memberNameTextView.setText("Member Name : " + memberName);
-
-        memberNoTextView = findViewById(R.id.memberNo);
-        memberNoTextView.setText("Member No : " + memberNo);
 
         thriftCapital = findViewById(R.id.thriftCapital1);
         fixedDeposit = findViewById(R.id.fixedDeposit1);

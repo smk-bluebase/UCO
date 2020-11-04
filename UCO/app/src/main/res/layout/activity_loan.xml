@@ -358,14 +358,16 @@
 
             </TableLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_loan_status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="35dp"
-                android:layout_margin="10dp">
-            </LinearLayout>
+            <TextView
+                android:id="@+id/loansNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/personDetailsTable"
+                android:text="@string/loansNote"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/textGreen" />
+
 
         </RelativeLayout>
 

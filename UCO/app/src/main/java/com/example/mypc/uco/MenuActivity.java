@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -23,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
@@ -53,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
         layoutParams.setMargins(0, 0, 200, height);
         background.setLayoutParams(layoutParams);
 
-        final Intent intent=getIntent();
+        final Intent intent = getIntent();
         memberNo = intent.getStringExtra("memberNo");
         memberName = intent.getStringExtra("memberName");
         boolean isLogin = Boolean.parseBoolean(intent.getStringExtra("isLogin"));
@@ -183,11 +185,22 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        LinearLayout statement = findViewById(R.id.statement);
+        statement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, StatementActivity.class);
+                intent.putExtra("memberNo", memberNo);
+                intent.putExtra("memberName", memberName);
+                startActivity(intent);
+            }
+        });
+
         LinearLayout memberContactInfo = findViewById(R.id.memberContactInfo);
         memberContactInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MenuActivity.this, EmployeeDetailsActivity.class);
+                Intent intent = new Intent(MenuActivity.this, EmployeeDetailsActivity.class);
                 intent.putExtra("memberNo", memberNo);
                 intent.putExtra("memberName", memberName);
                 startActivity(intent);
@@ -246,6 +259,28 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    public void logoutAlert(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setMessage("Do you want to Logout?");
+
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(MenuActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do Nothing!
+            }
+        });
+
+        alert.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -258,8 +293,7 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent i = new Intent(MenuActivity.this, MainActivity.class);
-                startActivity(i);
+                logoutAlert();
                 return true;
 
             default:
@@ -270,8 +304,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(MenuActivity.this, MainActivity.class);
-        startActivity(i);
+        logoutAlert();
     }
 
 }

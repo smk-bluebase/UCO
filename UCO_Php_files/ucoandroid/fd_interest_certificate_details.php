@@ -1,25 +1,20 @@
 <?php
 include("config.php");
-include("db_connect.php");
 
 $db = new DB_Connect();
 $con = $db->connect();
 
 $memberNo = $_POST['memberNo'];
-$year = $_POST['year'];
+$fromYear = $_POST['fromYear'];
+$toYear = $_POST['toYear'];
 
-$fromDate = "";
-$toDate = "";
+$fromDate = $fromYear . "-04-01";
+$toDate = $toYear . "-03-31";
 
-if($year == 2020){
-    $fromDate = "2019-04-01";
-    $toDate = "2020-03-31";
-}else if($year == 2021){
-    $fromDate = "2020-04-01";
-    $toDate = "2021-03-31";
-}
-
-$sql_query = "SELECT fdr_no, amount, sum(interest_amount) as interest_amount FROM `fd_interest_posting` WHERE date BETWEEN '".$fromDate."' and '".$toDate."' and member_no = '".$memberNo."' GROUP by fdr_no";
+$sql_query = "SELECT fdr_no, amount, sum(interest_amount) AS interest_amount
+                FROM `fd_interest_posting` 
+                WHERE date BETWEEN '".$fromDate."' AND '".$toDate."' AND member_no = '".$memberNo."' 
+                GROUP BY fdr_no";
 
 $res = mysqli_query($con, $sql_query);
 

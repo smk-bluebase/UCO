@@ -9,15 +9,8 @@
     <string name="password">Password</string>
     <string name="memberClosureAmount">Member Closure Amount</string>
 
-    <string-array name="financialYear">
-        <item>2019 - 2020</item>
-        <item>2020 - 2021</item>
-    </string-array>
-
-    <string-array name="thriftInterest">
-        <item>2017 - 2018</item>
-        <item>2018 - 2019</item>
-        <item>2019 - 2020</item>
-    </string-array>
+    <string name="loansNote">
+        NOTE - Eligibility of loan is after 3 demands received consecutively for 3 months - maximum 7 lakhs, subject to sanction by BOARD.
+    </string>
 
 </resources>

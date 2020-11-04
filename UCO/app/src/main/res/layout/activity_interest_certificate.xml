@@ -40,7 +40,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:text="Interest Certificate"
+            android:text="INTEREST CERTIFICATE"
             android:orientation="vertical"
             android:paddingTop="5dp"
             android:paddingLeft="25dp"

@@ -8,8 +8,8 @@ android {
         applicationId "in.blubase.uco"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 5
-        versionName "2.3.1"
+        versionCode 6
+        versionName "2.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -45,4 +45,5 @@ dependencies {
     implementation 'com.itextpdf:itext7-core:7.0.2'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation group: 'commons-io', name: 'commons-io', version: '2.0.1'
+    implementation 'com.google.android.material:material:1.2.1'
 }

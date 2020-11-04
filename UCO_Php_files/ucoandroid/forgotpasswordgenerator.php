@@ -1,6 +1,5 @@
 <?php
 include("config.php");
-include("db_connect.php");
 require 'sendmail.php';
 
 $db = new DB_Connect();
@@ -25,11 +24,14 @@ function generateAndSendEmail($con, $userName, $email){
     Regards,<br/>
     UCO Team";
 
-    $sql_query = "UPDATE `password_reset` SET `status` = 1 WHERE `member_no` = '".$userName."'";
+    $sql_query = "UPDATE `password_reset` 
+                    SET `status` = 1 
+                    WHERE `member_no` = '".$userName."'";
 
     $con->query($sql_query);
 
-    $sql_query = "INSERT INTO `password_reset` (`member_no`, `email_id`, `token`, `status`) VALUES ('$userName','$email','$otp', 0)";
+    $sql_query = "INSERT INTO `password_reset` (`member_no`, `email_id`, `token`, `status`) 
+                    VALUES ('$userName','$email','$otp', 0)";
 
     $con->query($sql_query);
 
@@ -42,7 +44,9 @@ function generateAndSendEmail($con, $userName, $email){
     return $result;
 }
 
-$sql_query = "SELECT email FROM member WHERE emp_no = '".$userName."'";
+$sql_query = "SELECT email 
+                FROM member 
+                WHERE emp_no = '".$userName."'";
 
 $res = mysqli_query($con, $sql_query);
 

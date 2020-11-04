@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +37,8 @@ public class SuretyDetailsActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Context context = this;
 
-    TableLayout tableLayout;
+    TableLayout suretyMembersTable;
+    TableLayout availableMembersTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,8 @@ public class SuretyDetailsActivity extends AppCompatActivity {
         memberNoTextView = findViewById(R.id.memberNo);
         memberNoTextView.setText("Member No : " + memberNo);
 
-        tableLayout = findViewById(R.id.displayTable);
+        suretyMembersTable = findViewById(R.id.suretyMembersTable);
+        availableMembersTable = findViewById(R.id.availableSuretyMembersTable);
 
         if(!memberNo.isEmpty()){
             progressDialog = new ProgressDialog(this);
@@ -93,13 +93,19 @@ public class SuretyDetailsActivity extends AppCompatActivity {
                 super.postRequest(urlSuretyDetails, jsonObject);
             }else {
                 Toast.makeText(getApplicationContext(), "Connection to Network \nnot Available", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         }
 
         public void onFinish(JSONArray jsonArray){
             try{
-                if(jsonArray.length() > 0){
-                    JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+                JSONObject tempObject = (JSONObject) jsonArray.get(0);
+
+                JSONArray members = new JSONArray(tempObject.getString("registered_members"));
+                JSONArray availableMembers = new JSONArray(tempObject.getString("available_members"));
+
+                if(members.length() > 0){
+                    JSONObject jsonObject = (JSONObject) members.get(0);
                     Iterator<String> keys = jsonObject.keys();
 
                     int i = 0;
@@ -110,76 +116,50 @@ public class SuretyDetailsActivity extends AppCompatActivity {
                         i++;
                     }
 
-                    tableLayout.addView(createTableRow(Color.WHITE, getResources().getColor(R.color.c1), tableHeader, true));
+                    suretyMembersTable.addView(CommonUtils.createTableRow(context, Color.WHITE, getResources().getColor(R.color.c1), tableHeader, true, Gravity.CENTER));
                 }
 
-                for(int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                for(int i = 0; i < members.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) members.get(i);
 
                     if(i%2 != 0) {
-                        tableLayout.addView(createTableRow(Color.BLACK, getResources().getColor(R.color.lightGray), jsonObject, false));
+                        suretyMembersTable.addView(CommonUtils.createTableRow(context, Color.BLACK, getResources().getColor(R.color.lightGray), jsonObject, false, Gravity.LEFT));
                     }else {
-                        tableLayout.addView(createTableRow(Color.BLACK, Color.WHITE, jsonObject, false));
+                        suretyMembersTable.addView(CommonUtils.createTableRow(context, Color.BLACK, Color.WHITE, jsonObject, false, Gravity.LEFT));
                     }
                 }
+
+                if(availableMembers.length() > 0){
+                    JSONObject jsonObject = (JSONObject) availableMembers.get(0);
+                    Iterator<String> keys = jsonObject.keys();
+
+                    int i = 0;
+                    JSONObject tableHeader = new JSONObject();
+                    while(keys.hasNext()){
+                        String key = keys.next();
+                        tableHeader.put(String.valueOf(i), key);
+                        i++;
+                    }
+
+                    availableMembersTable.addView(CommonUtils.createTableRow(context, Color.WHITE, getResources().getColor(R.color.c1), tableHeader, true, Gravity.CENTER));
+                }
+
+                for(int i = 0; i < availableMembers.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) availableMembers.get(i);
+
+                    if(i%2 != 0) {
+                        availableMembersTable.addView(CommonUtils.createTableRow(context, Color.BLACK, getResources().getColor(R.color.lightGray), jsonObject, false, Gravity.LEFT));
+                    }else {
+                        availableMembersTable.addView(CommonUtils.createTableRow(context, Color.BLACK, Color.WHITE, jsonObject, false, Gravity.LEFT));
+                    }
+                }
+
             }catch(JSONException e) {
                 Toast.makeText(getApplicationContext(),"JSON format invalid",Toast.LENGTH_SHORT).show();
             }
 
             progressDialog.dismiss();
         }
-    }
-
-    public TableRow createTableRow(int textColor, int backgroundColor, JSONObject jsonObject, boolean isHeader){
-        TableRow tableRow = new TableRow(context);
-        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
-        tableRow.setPadding(1, 1, 1, 1);
-
-        try {
-            Iterator<String> keys = jsonObject.keys();
-
-            while(keys.hasNext()) {
-                String key = keys.next();
-
-                if(jsonObject.get(key).toString().isEmpty()) continue;
-
-                if(!isHeader) {
-                    if (keys.hasNext()) {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), true, Gravity.LEFT));
-                    } else {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), false, Gravity.LEFT));
-                    }
-                }else {
-                    if (keys.hasNext()) {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), true, Gravity.CENTER));
-                    } else {
-                        tableRow.addView(createTextView(textColor, backgroundColor, jsonObject.get(key).toString(), false, Gravity.CENTER));
-                    }
-                }
-
-            }
-
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
-
-        return tableRow;
-    }
-
-    public TextView createTextView(int textColor, int backgroundColor, String text, boolean isMarginRight, int orientation){
-        TextView textView = new TextView(context);
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.2f);
-        if(isMarginRight) params.setMargins(0, 0, 5, 5);
-        else params.setMargins(0, 0, 0, 5);
-        textView.setLayoutParams(params);
-        textView.setBackgroundColor(backgroundColor);
-        textView.setGravity(orientation);
-        textView.setPadding(5, 5, 5, 5);
-        textView.setText(text);
-        textView.setTypeface(textView.getTypeface(), Typeface.BOLD_ITALIC);
-        textView.setTextSize(8);
-        textView.setTextColor(textColor);
-        return textView;
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LoanInterestCertificate {
-    public void createPDF (PDFView pdfView, File file, String dest, ImageData imageData, String nameStr, String memberNoStr, String moneyStr, String fromDateStr, String toDateStr, String interestRecoveredNo, String interestToBeRecoveredNo) throws IOException {
+    public void createPDF (PDFView pdfView, File file, String dest, ImageData imageData, String nameStr, String memberNoStr, String branch_name, String zone, String moneyStr, String fromDateStr, String toDateStr, String interestRecoveredNo, String interestToBeRecoveredNo) throws IOException {
         // Creating a PdfWriter
         PdfWriter writer = null;
         try {
@@ -108,7 +108,9 @@ public class LoanInterestCertificate {
         String para2Str = " Mem.No. ";
         Text para2 = new Text(para2Str);
 
-        String para3Str = " UCO BANK, PURASAWALKAM CHENNAI, has been charged a sum of Rs. ";
+        String para3Str;
+        if(!zone.isEmpty()) para3Str = " UCO BANK, " + branch_name + " " + zone + ", has been charged a sum of Rs. ";
+        else para3Str = " UCO BANK, " + branch_name + ", has been charged a sum of Rs. ";
         Text para3 = new Text(para3Str);
 
         String para4Str = " ( Rupees ";
@@ -168,30 +170,6 @@ public class LoanInterestCertificate {
         Paragraph signature = new Paragraph(signatureStr);
         signature.setFixedPosition(140, 340, 400);
 
-        // To Address
-        String toStr = "To";
-        Paragraph to = new Paragraph(toStr);
-        to.setFont(bold);
-        to.setFixedPosition( 60, 280, 200);
-
-        String addressStr1 = "Shri/Smt. ";
-        Paragraph address1 = new Paragraph(addressStr1);
-        address1.setFixedPosition(60,260, 200);
-        address1.add(name).add(",");
-        address1.setFontSize(10f);
-
-        String addressStr2 = "UCO BANK,\n" +
-                "OLD NO. 285, NEW NO. 14,\n" +
-                "PURASAWALKAM, HIGH ROAD,\n" +
-                "PURASAWALKAM, CHENNAI,\n" +
-                "CHENNAI TAMILNADU,\n" +
-                "PIN - 600007.";
-
-        Paragraph address2 = new Paragraph(addressStr2);
-        address2.setFixedPosition(60, 170, 300);
-        address2.setFontSize(10f);
-
-
         // Adding paragraphs to document
         document.add(title);
         document.add(heading);
@@ -206,9 +184,6 @@ public class LoanInterestCertificate {
         document.add(totalPara);
         document.add(total);
         document.add(signature);
-        document.add(to);
-        document.add(address1);
-        document.add(address2);
 
         // Closing the document
         document.close();

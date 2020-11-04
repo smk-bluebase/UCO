@@ -1,6 +1,5 @@
 <?php
 include("config.php");
-include("db_connect.php");
 
 $db = new DB_Connect();
 $con = $db->connect();
@@ -13,7 +12,9 @@ $result = array();
 
 $oldPassword = "";
 
-$sql_query = "SELECT password FROM user_master WHERE member_id = '".$memberNo."'";
+$sql_query = "SELECT password 
+				FROM user_master 
+				WHERE member_id = '".$memberNo."'";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -24,7 +25,9 @@ if($row){
 }
 
 if($oldPassword == $currentPassword){
-	$sql_query = "UPDATE user_master SET password = '".$newPassword."' WHERE member_id = '".$memberNo."'";
+	$sql_query = "UPDATE user_master 
+					SET password = '".$newPassword."' 
+					WHERE member_id = '".$memberNo."'";
 
 	if(mysqli_query($con, $sql_query)){
 		array_push($result, array('status'=>'Your password has been changed.'));

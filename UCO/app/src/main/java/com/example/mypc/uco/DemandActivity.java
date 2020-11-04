@@ -45,6 +45,19 @@ public class DemandActivity extends AppCompatActivity {
     JsonObject jsonObject;
     ProgressDialog progressDialog;
 
+    String[] months = {"January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +127,12 @@ public class DemandActivity extends AppCompatActivity {
             try {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+
+                    String demandMonthRaisedStr = jsonObject.getString("demandMonthNo");
+                    String month = months[Integer.parseInt(demandMonthRaisedStr.substring(0, 2)) - 1] + ", " + Integer.parseInt(demandMonthRaisedStr.substring(2));
+
+                    TextView demandRaisedMonth = findViewById(R.id.demandRaisedMonth);
+                    demandRaisedMonth.setText("Demand raised on : " + month);
 
                     srf.setText(jsonObject.getString("srf"));
                     srfOD.setText(jsonObject.getString("srfOD"));

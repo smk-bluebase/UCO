@@ -1,6 +1,5 @@
 <?php
 include("config.php");
-include("db_connect.php");
 
 $db = new DB_Connect();
 $con = $db->connect();
@@ -19,7 +18,10 @@ $fd_interest="";
 
 // Query 1
 
-$sql_query = "SELECT percentage FROM interest_master WHERE name = 'THRIFT DEPOSIT' ORDER BY id DESC";
+$sql_query = "SELECT percentage 
+				FROM interest_master 
+				WHERE name = 'THRIFT DEPOSIT'
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -31,7 +33,10 @@ if($row){
 
 // Query 2
 
-$sql_query = "SELECT percentage FROM interest_master WHERE name = 'SRF' ORDER BY id DESC";
+$sql_query = "SELECT percentage
+				FROM interest_master 
+				WHERE name = 'SRF' 
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -43,7 +48,9 @@ if($row){
 
 // Query 3
 
-$sql_query = "SELECT percentage FROM fd_interest_rate ORDER BY id DESC";
+$sql_query = "SELECT percentage
+				FROM fd_interest_rate
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -55,7 +62,10 @@ if($row){
 
 // Query 4
 
-$sql_query = "SELECT interest_rate, od_interest_rate FROM loan_type WHERE code = 'LON-001' ORDER BY id DESC";
+$sql_query = "SELECT interest_rate, od_interest_rate
+				FROM loan_type 
+				WHERE code = 'LON-001'
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -68,7 +78,10 @@ if($row){
 
 // Query 5
 
-$sql_query = "SELECT interest_rate, od_interest_rate FROM loan_type WHERE code = 'LON-002' ORDER BY id DESC";
+$sql_query = "SELECT interest_rate, od_interest_rate
+				FROM loan_type
+				WHERE code = 'LON-002'
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -81,7 +94,10 @@ if($row){
 
 // Query 6
 
-$sql_query = "SELECT interest_rate, od_interest_rate FROM loan_type WHERE code = 'LON-003' ORDER BY id DESC";
+$sql_query = "SELECT interest_rate, od_interest_rate
+				FROM loan_type
+				WHERE code = 'LON-003'
+				ORDER BY id DESC";
 
 $res = mysqli_query($con, $sql_query);
 

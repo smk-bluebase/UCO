@@ -1,14 +1,16 @@
 <?php
 include("config.php");
-include("db_connect.php");
 
 $db = new DB_Connect();
 $con = $db->connect();
 
 $memberNo = $_POST['memberNo'];
-$year = $_POST['year'];
+$fromYear = $_POST['fromYear'];
+$toYear = $_POST['toYear'];
 
-$sql_query = "SELECT account_no FROM member WHERE member_no = ".$memberNo."";
+$sql_query = "SELECT account_no
+                FROM member 
+                WHERE member_no = ".$memberNo."";
 
 $res = mysqli_query($con, $sql_query);
 
@@ -18,7 +20,9 @@ while($row = mysqli_fetch_array($res)){
     $accountNo = $row['account_no'];
 }
 
-$sql_query = "SELECT member_no, name, date, acc_no, interest_amount FROM thrift_interest_transaction WHERE member_no = ".$memberNo." AND year(date) = '".$year."'";
+$sql_query = "SELECT member_no, name, date, acc_no, interest_amount
+                FROM thrift_interest_transaction
+                WHERE member_no = ".$memberNo." AND year(date) = '".$toYear."'";
 
 $res = mysqli_query($con, $sql_query);
 

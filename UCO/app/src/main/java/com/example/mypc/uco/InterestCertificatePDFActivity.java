@@ -14,10 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,6 +56,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
     String urlLoanInterestCertificate = CommonUtils.IP + "/UCO/ucoandroid/loan_interest_certificate_details.php";
     String urlFDInterestCertificate = CommonUtils.IP + "/UCO/ucoandroid/fd_interest_certificate_details.php";
     String urlThriftInterestCertificate = CommonUtils.IP + "/UCO/ucoandroid/thrift_interest_certificate_details.php";
+    String urlGetBankAddress = CommonUtils.IP + "/UCO/ucoandroid/get_branch_address.php";
 
     JsonObject jsonObject;
     ProgressDialog progressDialog;
@@ -65,6 +67,10 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
     String memberNoStr;
     String fromYearStr;
     String toYearStr;
+
+    String branch_name;
+    String zone;
+    AutoCompleteTextView year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,16 +92,26 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
         memberName = intent.getStringExtra("memberName");
         memberNo = intent.getStringExtra("memberNo");
 
-        Spinner year = findViewById(R.id.year);
+        String[] yearArray = {};
 
         if(section == 1 || section == 2) {
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.financialYear, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            for (int i = 2019; i <= new Date().getYear() + 1900; i++){
+                yearArray = Arrays.copyOf(yearArray, yearArray.length + 1);
+                yearArray[yearArray.length - 1] = i + " - " + (i + 1);
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, yearArray);
+            year = findViewById(R.id.year);
             year.setAdapter(adapter);
+            year.setKeyListener(null);
         }else {
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.thriftInterest, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            for (int i = 2017; i <= new Date().getYear() + 1899; i++){
+                yearArray = Arrays.copyOf(yearArray, yearArray.length + 1);
+                yearArray[yearArray.length - 1] = i + " - " + (i + 1);
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, yearArray);
+            year = findViewById(R.id.year);
             year.setAdapter(adapter);
+            year.setKeyListener(null);
         }
 
         pdfView = findViewById(R.id.pdfView);
@@ -105,58 +121,37 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
 
         Button ok = findViewById(R.id.ok);
 
-        jsonObject = new JsonObject();
-        jsonObject.addProperty("memberNo", memberNo);
-
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(context);
-                progressDialog.setCancelable(false);
-                progressDialog.setMessage("Loading...");
-                progressDialog.show();
+                if(year.isFocused()) {
+                    progressDialog = new ProgressDialog(context);
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Loading...");
+                    progressDialog.show();
 
-                String selectedYear = year.getSelectedItem().toString();
+                    String selectedYear = year.getText().toString();
+                    fromYearStr = selectedYear.substring(0, 4);
+                    toYearStr = selectedYear.substring(7);
 
-                if(section == 1 || section == 2) {
-                    if (selectedYear.equals("2019 - 2020")) {
-                        jsonObject.addProperty("year", "2020");
-                        fromYearStr = "2019";
-                        toYearStr = "2020";
-                    } else if (selectedYear.equals("2020 - 2021")) {
-                        jsonObject.addProperty("year", "2021");
-                        fromYearStr = "2020";
-                        toYearStr = "2021";
+                    jsonObject = new JsonObject();
+                    jsonObject.addProperty("memberNo", memberNo);
+                    jsonObject.addProperty("fromYear", fromYearStr);
+                    jsonObject.addProperty("toYear", toYearStr);
+
+                    if (section == 1) {
+                        PostLoanInterestCertificate postLoanInterestCertificate = new PostLoanInterestCertificate(context);
+                        postLoanInterestCertificate.checkServerAvailability(2);
+                    } else if (section == 2) {
+                        PostFDInterestCertificate postFDInterestCertificate = new PostFDInterestCertificate(context);
+                        postFDInterestCertificate.checkServerAvailability(2);
+                    } else if (section == 3) {
+                        PostThriftInterestCertificate postThriftInterestCertificate = new PostThriftInterestCertificate(context);
+                        postThriftInterestCertificate.checkServerAvailability(2);
                     }
-                }else {
-                    if (selectedYear.equals("2017 - 2018")){
-                        jsonObject.addProperty("year", "2018");
-                        fromYearStr = "2017";
-                        toYearStr = "2018";
-                    } else if (selectedYear.equals("2018 - 2019")) {
-                        jsonObject.addProperty("year", "2019");
-                        fromYearStr = "2018";
-                        toYearStr = "2019";
-                    } else if (selectedYear.equals("2019 - 2020")) {
-                        jsonObject.addProperty("year", "2020");
-                        fromYearStr = "2019";
-                        toYearStr = "2020";
-                    }
-                }
-
-                if(section == 1){
-                    PostLoanInterestCertificate postLoanInterestCertificate = new PostLoanInterestCertificate(context);
-                    postLoanInterestCertificate.checkServerAvailability(2);
-                }else if(section == 2){
-                    PostFDInterestCertificate postFDInterestCertificate = new PostFDInterestCertificate(context);
-                    postFDInterestCertificate.checkServerAvailability(2);
-                }else if(section == 3){
-                    PostThriftInterestCertificate postThriftInterestCertificate = new PostThriftInterestCertificate(context);
-                    postThriftInterestCertificate.checkServerAvailability(2);
                 }
             }
         });
-
 
         Button share = findViewById(R.id.share);
 
@@ -171,6 +166,18 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, "Choose a File Viewer"));
             }
         });
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        jsonObject = new JsonObject();
+        jsonObject.addProperty("memberNo", memberNo);
+
+        PostGetBankAddress postGetBankAddress = new PostGetBankAddress(context);
+        postGetBankAddress.checkServerAvailability(2);
+
     }
 
     private boolean checkPermission() {
@@ -253,7 +260,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                                 file.createNewFile();
                                 if(file.exists()) {
                                     LoanInterestCertificate loanInterestCertificate = new LoanInterestCertificate();
-                                    loanInterestCertificate.createPDF(pdfView, file,  destination, imageData, nameStr, memberNoStr, moneyStr, fromDateStr, toDateStr, interestRecoveredNo, interestToBeRecoveredNo);
+                                    loanInterestCertificate.createPDF(pdfView, file,  destination, imageData, nameStr, memberNoStr, branch_name, zone, moneyStr, fromDateStr, toDateStr, interestRecoveredNo, interestToBeRecoveredNo);
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -269,7 +276,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                             file.createNewFile();
                             if(file.exists()) {
                                 LoanInterestCertificate loanInterestCertificate = new LoanInterestCertificate();
-                                loanInterestCertificate.createPDF(pdfView, file, destination, imageData, nameStr, memberNoStr, moneyStr, fromDateStr, toDateStr, interestRecoveredNo, interestToBeRecoveredNo);
+                                loanInterestCertificate.createPDF(pdfView, file, destination, imageData, nameStr, memberNoStr, branch_name, zone, moneyStr, fromDateStr, toDateStr, interestRecoveredNo, interestToBeRecoveredNo);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -322,7 +329,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                             file.createNewFile();
                             if(file.exists()) {
                                 FDInterestCertificate fdInterestCertificate = new FDInterestCertificate();
-                                fdInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, fromYearStr, toYearStr);
+                                fdInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, branch_name, zone, fromYearStr, toYearStr);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -338,7 +345,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                         file.createNewFile();
                         if(file.exists()) {
                             FDInterestCertificate fdInterestCertificate = new FDInterestCertificate();
-                            fdInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, fromYearStr, toYearStr);
+                            fdInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, branch_name, zone, fromYearStr, toYearStr);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -385,7 +392,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                             file.createNewFile();
                             if(file.exists()) {
                                 ThriftInterestCertificate thriftInterestCertificate = new ThriftInterestCertificate();
-                                thriftInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, fromYearStr, toYearStr);
+                                thriftInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, branch_name, zone, fromYearStr, toYearStr);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -401,7 +408,7 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
                         file.createNewFile();
                         if(file.exists()) {
                             ThriftInterestCertificate thriftInterestCertificate = new ThriftInterestCertificate();
-                            thriftInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, fromYearStr, toYearStr);
+                            thriftInterestCertificate.createPDF(jsonArray, pdfView, file, destination, imageData, nameStr, memberNoStr, branch_name, zone, fromYearStr, toYearStr);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -414,6 +421,45 @@ public class InterestCertificatePDFActivity extends AppCompatActivity {
 
             progressDialog.dismiss();
         }
+    }
+
+    private class PostGetBankAddress extends PostRequest{
+        public PostGetBankAddress(Context context){
+            super(context);
+        }
+
+        public void serverAvailability(boolean isServerAvailable){
+            if(isServerAvailable){
+                super.postRequest(urlGetBankAddress, jsonObject);
+            }else {
+                Toast.makeText(getApplicationContext(), "Connection to Network \nnot Available", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        }
+
+        public void onFinish(JSONArray jsonArray){
+            progressDialog.dismiss();
+
+            try{
+                JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+
+                branch_name = jsonObject.getString("name");
+                zone = jsonObject.getString("zone");
+
+                if(branch_name.contains(zone)){
+                    zone = "";
+                }
+
+                if (branch_name.contains(",")){
+                    branch_name = branch_name.replace(",", "");
+                }
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     @Override
